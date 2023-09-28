@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
 namespace BookManager
@@ -57,9 +58,34 @@ namespace BookManager
 
         private void FndBkBtn_Click(object sender, EventArgs e)
         {
+            if (ByTitlerb.Checked)
+            {
+                BkLstBx.DataSource = null;
+                IEnumerable<Books> query = bookList.Where(x => x.Title.ToLower().Contains(Searchtxtbox.Text.ToLower())).ToList();
+                BkLstBx.DataSource = query;
+                BkLstBx.DisplayMember = "Title";
 
+            }
+
+            if (ByAuthorrb.Checked)
+            {
+                BkLstBx.DataSource = null;
+                IEnumerable<Books> query = bookList.Where(x => x.Author.ToLower().Contains(Searchtxtbox.Text.ToLower())).ToList();
+                BkLstBx.DataSource = query;
+                BkLstBx.DisplayMember = "Title";
+
+            }
+
+            if (ByPubYearrb.Checked)
+            {
+                BkLstBx.DataSource = null;
+                IEnumerable<Books> query = bookList.Where(x => x.YearPublished.ToString().ToLower().Contains(Searchtxtbox.Text.ToLower())).ToList();
+                BkLstBx.DataSource = query;
+                BkLstBx.DisplayMember = "Title";
+
+            }
         }
-    } //ket qua tra ve sau khi hien ShowDialog
+    } 
 
 
     public partial class AddbookForm : Form
