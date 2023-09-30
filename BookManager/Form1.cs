@@ -12,9 +12,9 @@ namespace BookManager
         public Form1()
         {
             InitializeComponent();
-            bookList.Add(new Books() { Title = "Testbook1", Author = "Author1", YearPublished = 1111 });
+           /* bookList.Add(new Books() { Title = "Testbook1", Author = "Author1", YearPublished = 1111 });
             bookList.Add(new Books() { Title = "Testbook2", Author = "Author2", YearPublished = 2222 });
-            bookList.Add(new Books() { Title = "Testbook3", Author = "Author3", YearPublished = 3333 });
+            bookList.Add(new Books() { Title = "Testbook3", Author = "Author3", YearPublished = 3333 });*/
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -26,15 +26,13 @@ namespace BookManager
             if (addBookControl.DialogResult == DialogResult.OK)
             {
                 bookList.Add(addBookControl.NewBook[addBookControl.NewBook.Count - 1]);
+                BookListUpdate.UpdateBookList(BkLstBx, bookList);
             }
         }
 
         private void ShwAllBtn_Click(object sender, EventArgs e)
         {
-            BkLstBx.DataSource = null;
-            BkLstBx.DataSource = bookList;
-            BkLstBx.DisplayMember = "Title";
-
+            BookListUpdate.UpdateBookList(BkLstBx,bookList);
         }
 
         private void BkLstBx_SelectedValueChanged(object sender, EventArgs e)
@@ -95,6 +93,10 @@ namespace BookManager
             ShowInTaskbar = true;
 
         }
+
+    
     }
+
+ 
 }
 
